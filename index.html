@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bolão da Copa 2026</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- TELA HOME -->
+  <section id="tela-home" class="tela ativa">
+    <div class="home-bg">
+      <div class="bg-losango"></div>
+      <div class="bg-noise"></div>
+    </div>
+
+    <div class="home-content">
+      <div class="badge-top">🇧🇷 FIFA World Cup 2026</div>
+
+      <h1 class="titulo-principal">
+        <span class="titulo-bolao">BOLÃO</span>
+        <span class="titulo-da">da</span>
+        <span class="titulo-copa">COPA</span>
+      </h1>
+
+      <p class="subtitulo">Faça sua aposta, torça pelo Brasil e mostre que você manda no futebol.</p>
+
+      <div class="home-stats">
+        <div class="stat">
+          <span class="stat-num">48</span>
+          <span class="stat-label">Times</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">12</span>
+          <span class="stat-label">Grupos</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">104</span>
+          <span class="stat-label">Jogos</span>
+        </div>
+      </div>
+
+      <button class="btn-criar-aposta" onclick="irParaTela('tela-grupos')">
+        <span class="btn-icon">⚽</span>
+        <span>Criar Aposta</span>
+        <span class="btn-arrow">→</span>
+      </button>
+
+      <div class="faixa-brasil">
+        <div class="f-verde"></div>
+        <div class="f-amarelo"></div>
+        <div class="f-azul">★★★★★</div>
+        <div class="f-amarelo"></div>
+        <div class="f-verde"></div>
+      </div>
+    </div>
+
+    <div class="home-estrelas">
+      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+    </div>
+  </section>
+
+  <!-- TELA GRUPOS -->
+  <section id="tela-grupos" class="tela">
+    <header class="top-nav">
+      <button class="btn-voltar" onclick="irParaTela('tela-home')">← Início</button>
+      <h2 class="nav-titulo">⚽ Fase de Grupos</h2>
+      <button class="btn-avancar" onclick="salvarEIrMata()">Mata-Mata →</button>
+    </header>
+
+    <div class="grupos-wrapper" id="grupos-container"></div>
+
+    <div class="sticky-bottom">
+      <button class="btn-ir-mata" onclick="salvarEIrMata()">
+        Avançar para o Mata-Mata →
+      </button>
+    </div>
+  </section>
+
+  <!-- TELA MATA-MATA -->
+  <section id="tela-mata" class="tela">
+    <header class="top-nav">
+      <button class="btn-voltar" onclick="irParaTela('tela-grupos')">← Grupos</button>
+      <h2 class="nav-titulo">🏆 Mata-Mata</h2>
+      <button class="btn-avancar" onclick="irParaTela('tela-home')">🏠 Início</button>
+    </header>
+
+    <div class="mata-intro">
+      <p>Clique no time que você acha que vai avançar em cada confronto.</p>
+    </div>
+
+    <div class="mata-wrapper">
+      <div class="mata-bracket" id="mata-bracket"></div>
+    </div>
+
+    <div class="sticky-bottom">
+      <button class="btn-salvar" onclick="salvarAposta()">
+        💾 Salvar Aposta
+      </button>
+    </div>
+  </section>
+
+  <!-- MODAL -->
+  <div id="modal-sucesso" class="modal-overlay escondido">
+    <div class="modal-box">
+      <div class="modal-icon">🎉</div>
+      <h3>Aposta Salva!</h3>
+      <p>Boa sorte no Bolão da Copa! 🇧🇷</p>
+      <button onclick="fecharModal()">Fechar</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
