@@ -4,63 +4,81 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bolão da Copa 2026</title>
+  <link rel="icon" type="image/svg+xml" href="assets/icon.svg" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css"/>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Brusher&family=Righteous&family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
+
+  <!-- CONFETE -->
+  <canvas id="confete-canvas"></canvas>
 
   <!-- TELA HOME -->
   <section id="tela-home" class="tela ativa">
     <div class="home-bg">
-      <div class="bg-losango"></div>
-      <div class="bg-noise"></div>
+      <div class="vignette"></div>
     </div>
 
-    <div class="home-content">
-      <div class="badge-top">🇧🇷 FIFA World Cup 2026</div>
+    <div class="home-layout">
 
-      <h1 class="titulo-principal">
-        <span class="titulo-bolao">BOLÃO</span>
-        <span class="titulo-da">da</span>
-        <span class="titulo-copa">COPA</span>
-      </h1>
+      <!-- COLUNA TROFÉU -->
+      <div class="trofeu-container">
+        <img src="assets/taca.png" class="trofeu-img" alt="Taça Copa do Mundo" />
+      </div>
 
-      <p class="subtitulo">Faça sua aposta, torça pelo Brasil e mostre que você manda no futebol.</p>
+      <!-- COLUNA CENTRAL -->
+      <div class="home-center">
+        <div class="badge-top">🇧🇷 FIFA WORLD CUP 2026</div>
 
-      <div class="home-stats">
-        <div class="stat">
-          <span class="stat-num">48</span>
-          <span class="stat-label">Times</span>
+        <h1 class="titulo-principal">
+          <span class="titulo-bolao">BOLÃO</span>
+          <div class="titulo-da-wrap">
+            <span class="linha-deco"></span>
+            <span class="titulo-da">da</span>
+            <span class="linha-deco"></span>
+          </div>
+          <span class="titulo-copa">COPA</span>
+        </h1>
+
+        <p class="subtitulo">Faça sua aposta, torça pelo Brasil e mostre que<br>você manda no futebol.</p>
+
+        <div class="home-stats">
+          <div class="stat"><span class="stat-num">48</span><span class="stat-label">Times</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-num">12</span><span class="stat-label">Grupos</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-num">104</span><span class="stat-label">Jogos</span></div>
         </div>
-        <div class="stat-divider"></div>
-        <div class="stat">
-          <span class="stat-num">12</span>
-          <span class="stat-label">Grupos</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat">
-          <span class="stat-num">104</span>
-          <span class="stat-label">Jogos</span>
+
+        <button class="btn-criar-aposta" onclick="irParaTela('tela-grupos')">
+          <span class="btn-icon">⚽</span>
+          <span>Criar Aposta</span>
+          <span class="btn-arrow">→</span>
+        </button>
+
+        <div class="faixa-brasil">
+          <div class="f-verde"></div>
+          <div class="f-amarelo"></div>
+          <div class="f-azul">★ ★ ★ ★ ★</div>
+          <div class="f-amarelo"></div>
+          <div class="f-verde"></div>
         </div>
       </div>
 
-      <button class="btn-criar-aposta" onclick="irParaTela('tela-grupos')">
-        <span class="btn-icon">⚽</span>
-        <span>Criar Aposta</span>
-        <span class="btn-arrow">→</span>
-      </button>
-
-      <div class="faixa-brasil">
-        <div class="f-verde"></div>
-        <div class="f-amarelo"></div>
-        <div class="f-azul">★★★★★</div>
-        <div class="f-amarelo"></div>
-        <div class="f-verde"></div>
+      <!-- COLUNA RANKING -->
+      <div class="home-ranking">
+        <div class="ranking-maior">
+          <div class="ranking-maior-label">🏆 MAIOR PONTUAÇÃO ATÉ AGORA</div>
+          <div class="ranking-maior-pts" id="ranking-maior-pts">0</div>
+          <div class="ranking-maior-sub">PONTOS</div>
+        </div>
+        <div class="ranking-lista-box">
+          <div class="ranking-titulo">RANKING</div>
+          <ul class="ranking-lista" id="ranking-lista"></ul>
+        </div>
       </div>
-    </div>
 
-    <div class="home-estrelas">
-      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
     </div>
   </section>
 
@@ -71,13 +89,9 @@
       <h2 class="nav-titulo">⚽ Fase de Grupos</h2>
       <button class="btn-avancar" onclick="salvarEIrMata()">Mata-Mata →</button>
     </header>
-
     <div class="grupos-wrapper" id="grupos-container"></div>
-
     <div class="sticky-bottom">
-      <button class="btn-ir-mata" onclick="salvarEIrMata()">
-        Avançar para o Mata-Mata →
-      </button>
+      <button class="btn-ir-mata" onclick="salvarEIrMata()">Avançar para o Mata-Mata →</button>
     </div>
   </section>
 
@@ -88,19 +102,13 @@
       <h2 class="nav-titulo">🏆 Mata-Mata</h2>
       <button class="btn-avancar" onclick="irParaTela('tela-home')">🏠 Início</button>
     </header>
-
-    <div class="mata-intro">
-      <p>Clique no time que você acha que vai avançar em cada confronto.</p>
-    </div>
-
+    <div class="mata-intro"><p>Clique no time que você acha que vai avançar em cada confronto.</p></div>
+    <div class="mata-tabs-container" id="mata-tabs-container"></div>
     <div class="mata-wrapper">
       <div class="mata-bracket" id="mata-bracket"></div>
     </div>
-
     <div class="sticky-bottom">
-      <button class="btn-salvar" onclick="salvarAposta()">
-        💾 Salvar Aposta
-      </button>
+      <button class="btn-salvar" onclick="salvarAposta()">💾 Salvar Aposta</button>
     </div>
   </section>
 
